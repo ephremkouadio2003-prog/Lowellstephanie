@@ -1,0 +1,16 @@
+Déposez vos fichiers dans ce dossier, avec exactement ces noms :
+
+  photomaton-1.jpg … photomaton-3.jpg   les 3 photos de la bande photomaton (format paysage, ~800 px de large).
+                                        Elles sortent de la fente au début, puis réapparaissent dans le collage.
+                                        Elles sont affichées automatiquement en noir et blanc.
+  coeur.jpg                             la photo dans le grand cœur en dentelle (section « Détails »),
+                                        ~1200 px, sujet au centre (elle est aussi passée en noir et blanc)
+  histoire-1.jpg … histoire-3.jpg     « Notre histoire » : les 3 polaroïds (format carré de préférence, ~900 px).
+                                        Les textes des trois chapitres se modifient dans index.html (cherchez « Chapitre I »).
+  galerie-1.jpg … galerie-14.jpg        la galerie 3D « Nos souvenirs » (~1200 px de large, tous formats).
+                                        Numérotez sans trou, à partir de 1 : le mur se remplit tout seul avec les photos
+                                        présentes. Tant qu'il n'y en a aucune, des photos de démonstration sont affichées.
+  musique.mp3                           votre chanson : elle se lance quand on touche le mini-vinyle
+
+Tant qu'une photo manque, son emplacement reste décoré (gris « photo » / « votre photo »).
+Lors de la mise en ligne, déposez le dossier photos/ à côté de index.html.
