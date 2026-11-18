@@ -239,6 +239,10 @@ svg{display:block}
 .chap__txt .caps{font-size:10.5px;color:var(--gold-light)}
 .chap__txt h3{font-family:var(--script);font-size:clamp(44px,11vw,58px);line-height:1.05}
 .chap__txt p.t{color:var(--ivory-80);font-size:17.5px}
+.chap__txt p.t + p.t{margin-top:8px}
+.clip{margin:6px 0 0;width:min(100%,520px);padding:8px 8px 0;background:#fbf8f1;box-shadow:0 18px 30px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.3);transform:rotate(1deg)}
+.clip video{display:block;width:100%;aspect-ratio:16/9;background:#000;object-fit:contain}
+.clip figcaption{font-family:var(--hand);font-size:clamp(20px,5.5vw,26px);color:#2d2a26;text-align:center;line-height:1;padding:10px 0 12px}
 .chap__txt p.todo{font-style:italic;color:var(--ivory-60)}
 /* le polaroïd est posé : il arrive de plus haut, plus incliné, puis se développe */
 .pola.rv{translate:0 -30px;scale:1.12;rotate:var(--r0,8deg);transition:opacity .9s ease, filter .9s ease, translate 1s cubic-bezier(.2,.8,.25,1.15), scale 1s cubic-bezier(.2,.8,.25,1.15), rotate 1s cubic-bezier(.2,.8,.25,1.15)}
@@ -838,7 +842,8 @@ html:has(.lb[open]){overflow:hidden}
       <div class="chap__txt rv">
         <p class="caps">Chapitre I</p>
         <h3>La rencontre</h3>
-        <p class="t todo">Racontez ici votre rencontre : où et quand vos chemins se sont croisés, et ce premier souvenir qui vous fait encore sourire.</p>
+        <p class="t">Notre histoire commence à Soubré, durant notre enfance. Nos frères étaient amis, mais nous deux… pas vraiment ! 🤣 Elle trouvait que je faisais trop le malin et qu’elle n’aimait pas ma tête. Qui aurait cru que quelques années plus tard, cette même petite fille deviendrait ma future épouse ?</p>
+        <p class="t">En 2018, après plusieurs mois d’échanges au téléphone, nous avons finalement eu notre premier rendez-vous dans un glacier. Elle était arrivée dans une robe en pagne et je me suis demandé : « Mais dans quoi je me suis embarqué ? » 😅 Pourtant, au fond de moi, je voyais déjà bien plus qu’une simple rencontre.</p>
       </div>
     </article>
 
@@ -861,7 +866,7 @@ html:has(.lb[open]){overflow:hidden}
       <div class="chap__txt rv">
         <p class="caps">Chapitre II</p>
         <h3>Nos premiers pas</h3>
-        <p class="t todo">Le premier rendez-vous, les voyages, les petites habitudes qui sont devenues les vôtres : quelques lignes sur votre vie à deux.</p>
+        <p class="t">Les jours sont devenus des mois, les mois des années. Nous avons appris à nous connaître, à nous aimer, à grandir ensemble et à traverser les différentes saisons de la vie. Malgré les défis, Dieu a toujours été au centre de notre histoire et, par sa grâce, nous sommes restés unis.</p>
       </div>
     </article>
 
@@ -874,8 +879,15 @@ html:has(.lb[open]){overflow:hidden}
       <div class="chap__txt rv">
         <p class="caps">Chapitre III</p>
         <h3>La demande</h3>
-        <p class="t todo">Le jour où la question a été posée, et la réponse qui nous réunit tous le 12 décembre 2026.</p>
+        <p class="t">Le 8 septembre, jour de son anniversaire, elle espérait secrètement recevoir une demande en mariage. Mais rien ne s’est passé… Elle a même boudé une bonne partie de la soirée, tellement sa déception était grande ! 🤣</p>
+        <p class="t">Mais quelques jours plus tard, le 12 septembre 2026, après plusieurs jours à préparer ma surprise, le grand moment est arrivé. Elle pensait simplement se rendre à une fête entre copines, sans imaginer ce qui l’attendait.</p>
+        <p class="t">Elle sortait tout juste d’une garde, fatiguée, lorsqu’elle a découvert nos familles et nos amis réunis. Et moi, je l’attendais avec une bague et la question qui allait changer nos vies.</p>
+        <p class="t">Cette fois, la surprise était bien réelle… et sa réponse fut un grand OUIIIII ! ❤️🥹</p>
       </div>
+      <figure class="clip rv">
+        <video id="proposalVideo" src="photos/demande.mp4" poster="photos/demande-affiche.jpg" controls playsinline preload="none"></video>
+        <figcaption>La demande, en vidéo ♡</figcaption>
+      </figure>
     </article>
   </section>
   </div>
@@ -931,9 +943,9 @@ html:has(.lb[open]){overflow:hidden}
         <div class="pmap"><iframe src="https://maps.google.com/maps?q=H%C3%B4tel+communal+de+Port-Bou%C3%ABt%2C+Abidjan&z=14&output=embed" loading="lazy" title="Carte : Hôtel communal de Port-Bouët" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
       </li>
       <li class="rv" style="--rd:.15s">
-        <div class="pi"><b>14h30</b><span class="w">Église</span><span class="n">Vases d'Honneur · Centre Doxa, Port-Bouët</span>
-          <a href="https://www.google.com/maps/search/?api=1&query=Vases+d%27Honneur+Centre+Doxa+Port-Bou%C3%ABt+Abidjan" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Itinéraire</a></div>
-        <div class="pmap"><iframe src="https://maps.google.com/maps?q=Vases+d%27Honneur+Centre+Doxa+Port-Bou%C3%ABt+Abidjan&z=14&output=embed" loading="lazy" title="Carte : Église Vases d'Honneur, Centre Doxa" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        <div class="pi"><b>14h30</b><span class="w">Église</span><span class="n">Salle polyvalente de Vridi Cité</span>
+          <a href="https://maps.app.goo.gl/PvhngeRM9vgAYEki7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Itinéraire</a></div>
+        <div class="pmap"><iframe src="https://maps.google.com/maps?q=Salle+polyvalente+Vridi+Cit%C3%A9%2C+Abidjan&z=15&output=embed" loading="lazy" title="Carte : Salle polyvalente de Vridi Cité" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
       </li>
       <li class="rv" style="--rd:.3s">
         <div class="pi"><b>17h00</b><span class="w">Réception</span><span class="n">Milliet Hôtel · Biétry, Zone 4</span>
@@ -1042,7 +1054,7 @@ html:has(.lb[open]){overflow:hidden}
             </div>
           </div>
           <div class="yn">
-            <div class="what"><b>Église</b><span>14h30 · Centre Doxa</span></div>
+            <div class="what"><b>Église</b><span>14h30 · Vridi Cité</span></div>
             <div class="seg" role="radiogroup" aria-label="Présence à l'église">
               <label><input type="radio" name="eglise" value="Oui"><span>Oui</span></label>
               <label><input type="radio" name="eglise" value="Non"><span>Non</span></label>
@@ -1414,6 +1426,9 @@ const GALERIE_DEMO    = [
     song.volume = 1; songStarted = true;
     try { await song.play(); } catch (_) { record.classList.remove('nope'); void record.offsetWidth; record.classList.add('nope'); }
   });
+  const pv = document.getElementById('proposalVideo');
+  if (pv) pv.addEventListener('play', () => { if (!song.paused) song.pause(); });
+  song.addEventListener('play', () => { if (pv && !pv.paused) pv.pause(); });
   song.addEventListener('play', () => { record.classList.add('playing'); record.setAttribute('aria-pressed', 'true'); });
   song.addEventListener('pause', () => { record.classList.remove('playing'); record.setAttribute('aria-pressed', 'false'); });
   song.addEventListener('error', () => { record.classList.remove('playing'); });
