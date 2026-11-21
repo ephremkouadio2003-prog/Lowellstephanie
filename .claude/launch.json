@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "invitation",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8765"],
-      "port": 8765
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "exec python3 -m http.server \"${PORT:-8766}\""],
+      "port": 8766
     }
   ]
 }
