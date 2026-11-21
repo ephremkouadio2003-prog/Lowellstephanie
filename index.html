@@ -956,7 +956,7 @@ html:has(.lb[open]){overflow:hidden}
     <p class="small dress rv">Tenue élégante dans les couleurs du jour : bleu marine, or et ivoire. Merci de réserver le blanc à la mariée.</p>
     <ul class="notes rv">
       <li><b>Invitation personnelle :</b> ce lien est à usage unique et vous est strictement réservé. Merci de ne pas le transférer.</li>
-      <li><b>Deux personnes au maximum :</b> l'invitation est valable pour vous et votre époux(se).</li>
+      <li><b>Invitation individuelle :</b> elle est valable pour vous seul(e).</li>
       <li><b>Enfants :</b> afin que chacun puisse profiter pleinement de la journée, nous vous prions, dans la mesure du possible, de laisser les enfants à la maison. Merci de votre compréhension.</li>
     </ul>
 
@@ -1032,17 +1032,26 @@ html:has(.lb[open]){overflow:hidden}
           <input id="f-name" name="name" type="text" autocomplete="name" required>
         </div>
         <div class="f">
-          <label for="f-count">Nombre de personnes (vous inclus)*</label>
-          <select id="f-count" name="count">
-            <option value="1">1 · je viens seul(e)</option>
-            <option value="2">2 · je viens avec mon époux(se)</option>
+          <label for="f-lien">Nature du lien*</label>
+          <select id="f-lien" name="lien" required>
+            <option value="" disabled selected>Choisissez…</option>
+            <option>Famille du marié</option>
+            <option>Famille de la mariée</option>
+            <option>Collègue du marié</option>
+            <option>Collègue de la mariée</option>
+            <option>Vase d’honneur</option>
+            <option>Porteur de Vie</option>
+            <option>Ami(e) du marié</option>
+            <option>Ami(e) de la mariée</option>
+            <option>Garçon d’honneur</option>
+            <option>Fille d’honneur</option>
+            <option value="Autre">Autre</option>
           </select>
-          <p class="hint">2 personnes maximum par invitation.</p>
+          <p class="hint">L’invitation est individuelle.</p>
         </div>
-        <div class="f" id="spouseField" hidden>
-          <label for="f-spouse">Nom et prénom(s) de votre époux(se)*</label>
-          <input id="f-spouse" name="spouse" type="text" autocomplete="off">
-          <p class="hint">L'invitation est nominative : merci d'indiquer le nom de la personne qui vous accompagne.</p>
+        <div class="f" id="lienAutreField" hidden>
+          <label for="f-lien-autre">Précisez votre lien avec les mariés*</label>
+          <input id="f-lien-autre" name="lienAutre" type="text" autocomplete="off" maxlength="80">
         </div>
         <fieldset class="f">
           <legend>Votre présence*</legend>
@@ -1110,7 +1119,7 @@ html:has(.lb[open]){overflow:hidden}
     <div class="faq__list rv">
       <details><summary><span class="n">01</span><span class="q">À quelle heure faut-il arriver ?</span></summary><p>Nous vous recommandons d’arriver 30 minutes avant chaque cérémonie : 12h30 pour le mariage civil, 14h30 pour la bénédiction nuptiale et 16h30 pour la réception.</p></details>
       <details><summary><span class="n">02</span><span class="q">Quelle tenue porter ?</span></summary><p>Soyez chic et élégant, mettez-vous sur votre trente-et-un ! Surprenez-nous !</p></details>
-      <details><summary><span class="n">03</span><span class="q">Puis-je venir accompagné(e) ?</span></summary><p>L’invitation est nominative. Merci d’indiquer le nom de votre époux(se) lors de la confirmation de présence.</p></details>
+      <details><summary><span class="n">03</span><span class="q">Puis-je venir accompagné(e) ?</span></summary><p>L’invitation est individuelle : elle est valable pour vous seul(e).</p></details>
       <details><summary><span class="n">04</span><span class="q">Comment confirmer ma présence ?</span></summary><p>Remplissez la carte réponse de la section <a href="#reponse">« Confirmer ma présence »</a> avant le 6 décembre 2026.</p></details>
       <details><summary><span class="n">05</span><span class="q">Y a-t-il un parking ?</span></summary><p>Oui, un parking est disponible à proximité des lieux de cérémonie.</p></details>
       <details><summary><span class="n">06</span><span class="q">Puis-je prendre des photos ?</span></summary><p>Pendant la cérémonie, profitez du moment : notre photographe s’occupe de tout.</p></details>
@@ -1479,16 +1488,15 @@ const GALERIE_DEMO    = [
   const editBtn = document.getElementById('editBtn');
   const submitBtn = document.getElementById('submitBtn');
 
-  const spouseField = document.getElementById('spouseField');
-  function syncSpouse() { spouseField.hidden = form.count.value !== '2'; }
-  form.count.addEventListener('change', syncSpouse);
+  const lienAutreField = document.getElementById('lienAutreField');
+  function syncLien() { lienAutreField.hidden = form.lien.value !== 'Autre'; }
+  form.lien.addEventListener('change', () => { syncLien(); if (!lienAutreField.hidden) form.lienAutre.focus(); });
   function val(name) { const el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ''; }
   function buildMessage(d) {
     return [
       'Confirmation de présence – Mariage de Lowell & Stephanie',
       'Nom : ' + d.guest,
-      d.spouse ? 'Époux(se) : ' + d.spouse : '',
-      'Nombre de personnes : ' + d.count,
+      'Lien : ' + d.lien,
       'Mairie (13h00) : ' + d.mairie,
       'Église (15h00) : ' + d.eglise,
       'Réception (17h00) : ' + d.reception,
@@ -1500,15 +1508,16 @@ const GALERIE_DEMO    = [
   form.addEventListener('submit', async e => {
     e.preventDefault(); err.hidden = true;
     const d = {
-      guest: form.name.value.trim(), count: form.count.value === '2' ? '2' : '1',
-      spouse: form.count.value === '2' ? form.spouse.value.trim() : '',
+      guest: form.name.value.trim(), count: '1',
+      lienChoix: form.lien.value, lienAutre: form.lien.value === 'Autre' ? form.lienAutre.value.trim() : '',
       mairie: val('mairie'), eglise: val('eglise'), reception: val('reception'),
       message: form.message.value.trim()
     };
     if (!d.guest) return showError('Merci d’indiquer votre nom.');
-    if (d.count === '2' && !d.spouse) return showError('Merci d’indiquer le nom de votre époux(se).');
-    // la feuille Google n'a qu'une colonne « Nom » : on y met les deux noms
-    d.name = d.spouse ? d.guest + ' + ' + d.spouse : d.guest;
+    if (!d.lienChoix) return showError('Merci d’indiquer la nature de votre lien avec les mariés.');
+    if (d.lienChoix === 'Autre' && !d.lienAutre) return showError('Merci de préciser votre lien avec les mariés.');
+    d.lien = d.lienChoix === 'Autre' ? 'Autre : ' + d.lienAutre : d.lienChoix;
+    d.name = d.guest;
     if (!d.mairie || !d.eglise || !d.reception) return showError('Merci de répondre Oui ou Non pour chacune des trois étapes.');
 
     const text = buildMessage(d);
@@ -1554,7 +1563,7 @@ const GALERIE_DEMO    = [
   try {
     const saved = JSON.parse(localStorage.getItem('rsvp-lowell-stephanie') || 'null');
     if (saved) {
-      form.name.value = saved.guest || saved.name || ''; form.count.value = saved.count === '2' ? '2' : '1'; form.spouse.value = saved.spouse || ''; syncSpouse(); form.message.value = saved.message || '';
+      form.name.value = saved.guest || saved.name || ''; if ([...form.lien.options].some(o => o.value && o.value === saved.lienChoix)) form.lien.value = saved.lienChoix; form.lienAutre.value = saved.lienAutre || ''; syncLien(); form.message.value = saved.message || '';
       ['mairie', 'eglise', 'reception'].forEach(k => { const el = form.querySelector('input[name="' + k + '"][value="' + saved[k] + '"]'); if (el) el.checked = true; });
     }
   } catch (_) {}
