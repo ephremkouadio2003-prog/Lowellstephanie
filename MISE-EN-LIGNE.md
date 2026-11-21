@@ -17,7 +17,7 @@ Le script crée lui-même la feuille sur votre Drive (« Réponses mariage – L
 
 Vérification : ouvrez l'URL `/exec` dans un navigateur, elle affiche `"ok":true` et le lien de la feuille.
 Chaque réponse envoyée depuis le site s'ajoute alors dans l'onglet « Réponses » : date, nom, nombre de personnes, mairie,
-église, réception, message, lien avec les mariés. La feuille est consultable depuis l'application Google Sheets sur téléphone.
+bénédiction nuptiale, réception, message, lien avec les mariés. La feuille est consultable depuis l'application Google Sheets sur téléphone.
 
 Si vous aviez déjà déployé une ancienne version du script, ou si vous modifiez le script plus tard :
 **Déployer → Gérer les déploiements → crayon → Version : Nouvelle version → Déployer** (l'URL ne change pas), puis
